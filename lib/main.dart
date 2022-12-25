@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-//immersive mod
+//immersive mode
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
   );
