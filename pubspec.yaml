@@ -41,12 +41,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
   #for app icon
   flutter_launcher_icons: ^0.11.0
-
   #for splash screen
   flutter_native_splash: ^2.2.16
+  #for changing the display name
 
 flutter_native_splash:
   #statt color bg ->
@@ -57,15 +56,14 @@ flutter_native_splash:
   color: "#892D89"
   image: assets/Sunny.png
 
-
-
-  #for Favourites:
-  provider: ^6.0.2
-
 flutter_icons:
   image_path: assets/Sunny.png
   android: true
   ios: true
+
+
+#for Favourites:
+provider: ^6.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
