@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:signshine/screens/remember.dart';
 
-
 void main() {
-  runApp(
-    Container(
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,11 +10,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: LearningScreen(),
+      routes: {
+        '/favorites': (context) => FavoriteScreen(
+              favoriteImages: [],
+            ),
+      },
     );
   }
 }
 
-class LearningScreen extends StatelessWidget {
+class LearningScreen extends StatefulWidget {
   final List<String> signImages = [
     'assets/alphabet/a.png',
     'assets/alphabet/b.png',
@@ -61,6 +61,23 @@ class LearningScreen extends StatelessWidget {
   ];
 
   @override
+  _LearningScreenState createState() => _LearningScreenState();
+}
+
+class _LearningScreenState extends State<LearningScreen> {
+  List<String> _favoriteImages = [];
+
+  void _toggleFavorite(String image) {
+    setState(() {
+      if (_favoriteImages.contains(image)) {
+        _favoriteImages.remove(image);
+      } else {
+        _favoriteImages.add(image);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purpleAccent,
@@ -83,43 +100,41 @@ class LearningScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
-              itemCount: signImages.length,
+              itemCount: widget.signImages.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Image(
-                        image: AssetImage(signImages[index]),
+                        image: AssetImage(widget.signImages[index]),
                         width: 300,
                         height: 300,
                       ),
                       IconButton(
-                        icon: Icon(Icons.favorite_border_outlined),
-                        onPressed: () async {
-                          // Add the letter to the database or file
-                        },
-                      ),
-                   /*   RaisedButton(
-                        child: Text('View Favorites'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FavoriteScreen(favoriteImages: []),
-                            ),
-                          );
-                        },
-                      ),*/
+                          icon: Icon(
+                            _favoriteImages.contains(widget.signImages[index])
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                          ),
+                          onPressed: () {
+                            _toggleFavorite(widget.signImages[index]);
+                          }),
                     ],
                   ),
                 );
               },
             ),
-          )
+          ),
+          TextButton(
+            child: Text('Remember sign',
+                style: TextStyle(color: Colors.yellow, fontSize: 20,)),
+            onPressed: () {
+              Navigator.pushNamed(context, '/favorites');
+            },
+          ),
         ],
       ),
     );
   }
 }
-

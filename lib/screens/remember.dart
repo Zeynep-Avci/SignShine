@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class FavoriteScreen extends StatelessWidget {
   final List<String> favoriteImages;
 
@@ -8,8 +9,9 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purpleAccent,
       appBar: AppBar(
-        title: Text('Favorites'),
+        title: Text('To Remember'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
       ),
@@ -41,7 +43,8 @@ class FavoriteScreen extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.favorite),
                         onPressed: () async {
-// Remove the letter from the database or file
+                          // Remove the image from the favoriteImages list
+                          // Remove the image from the database or file
                         },
                       ),
                     ],
