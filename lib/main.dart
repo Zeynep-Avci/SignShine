@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:signshine/widget/flip_card.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,20 +56,11 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-
-
-
-
-
-
-
-
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: const Color(0xFF892D89),
-      toolbarHeight: 10,
       centerTitle: true,
       title: Container(
         height: 30,
@@ -77,14 +69,3 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   );
 }
-
-
-
-
-
-
-
-
-
-
-

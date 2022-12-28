@@ -125,6 +125,7 @@ flutter:
     - assets/model/model_unquant.tflite
     - assets/fontlogo.png
     - assets/kfront.png
+    - assets/aback.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
