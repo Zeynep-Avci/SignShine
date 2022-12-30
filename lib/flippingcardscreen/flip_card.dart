@@ -1,18 +1,47 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:signshine/widget/flip_card.dart';
+import 'package:flutter/widgets.dart';
 
-//comes inside scaffold
-/*under appbar
-    body: Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(32),
-      child: FlipCardWidget(
-        front: Image.asset('assets/kfront.png'),
-        back: Image.asset('assets/aback.png'),
-      ),
-    )
+//comes inside scaffold under BoxDecoration
+/*
+
+              child: Column(
+                children: [
+                  Text(
+                    'Guess the letter ${lists.flippingcardsletter[0]}',
+                    style: TextStyle(
+                      fontFamily: 'KottaRegular',
+                      fontSize: 35,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Flip the card back and click on "Next"',
+                    style: TextStyle(
+                      fontFamily: 'KottaRegular',
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  FlipCardWidget(
+                    front: Image.asset(
+                        'assets/flipping card/front/frontcard.png'),
+                    back: Image.asset(lists.flippingcards[0]),
+                  ),
+                  SizedBox(height: 30,),
+                  FloatingActionButton(
+                      backgroundColor: Color(0xFFF1D97A),
+                      onPressed: () {
+                      setState(() {
+                        Image.asset('assets/flipping card/front/frontcard.png');
+                        lists.shuffle();
+                      });
+                    },
+                    child: Text('Next', style: TextStyle(color: Colors.deepPurple)),
+                  )
+                ],
+              )
+
  */
 
 class FlipCardWidget extends StatefulWidget{
@@ -34,6 +63,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
     with SingleTickerProviderStateMixin{ //for animation controller
   late AnimationController controller;
   late Animation<double> animation;
+
   bool isFront = true;
   double dragPosition = 0;
   bool isFrontStart = true;
@@ -107,17 +137,17 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
         //animation
         controller.forward(from: 0);
       },
-        child:Transform(
-          transform: transform,
+      child:Transform(
+        transform: transform,
+        alignment: Alignment.center,
+        child: isFront
+            ? widget.front
+            : Transform(
+          transform: Matrix4.identity()..rotateY(pi),
           alignment: Alignment.center,
-          child: isFront
-              ? widget.front
-              : Transform(
-                  transform: Matrix4.identity()..rotateY(pi),
-                  alignment: Alignment.center,
-                  child: widget.back,
-              ),
+          child: widget.back,
         ),
+      ),
     );
   }
 
@@ -128,5 +158,4 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       isFront = false;
     }
   }
-
 }

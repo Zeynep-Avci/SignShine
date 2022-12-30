@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flip_card: ^0.6.0
   flutter:
     sdk: flutter
 
@@ -57,7 +58,7 @@ flutter_native_splash:
   #flutter clean
   #flutter pub get
   #flutter pub run flutter_native_splash:create
-  color: "#892D89"
+  color: "#7C4492"
   image: assets/Sunny.png
 
 flutter_icons:
@@ -79,6 +80,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  fonts:
+    - family: KottaRegular
+      fonts:
+        - asset: fonts/KottaRegular-DO4aW.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -122,10 +128,36 @@ flutter:
     - assets/8.png
     - assets/9.png
     - assets/10.png
-    - assets/model/model_unquant.tflite
     - assets/fontlogo.png
-    - assets/kfront.png
     - assets/aback.png
+    - assets/bg.png
+    - assets/flipping card/front/frontcard.png
+    - assets/flipping card/back/backa.png
+    - assets/flipping card/back/backb.png
+    - assets/flipping card/back/backc.png
+    - assets/flipping card/back/backd.png
+    - assets/flipping card/back/backe.png
+    - assets/flipping card/back/backf.png
+    - assets/flipping card/back/backg.png
+    - assets/flipping card/back/backh.png
+    - assets/flipping card/back/backi.png
+    - assets/flipping card/back/backj.png
+    - assets/flipping card/back/backk.png
+    - assets/flipping card/back/backl.png
+    - assets/flipping card/back/backm.png
+    - assets/flipping card/back/backn.png
+    - assets/flipping card/back/backo.png
+    - assets/flipping card/back/backp.png
+    - assets/flipping card/back/backq.png
+    - assets/flipping card/back/backr.png
+    - assets/flipping card/back/backs.png
+    - assets/flipping card/back/backt.png
+    - assets/flipping card/back/backu.png
+    - assets/flipping card/back/backv.png
+    - assets/flipping card/back/backw.png
+    - assets/flipping card/back/backx.png
+    - assets/flipping card/back/backy.png
+    - assets/flipping card/back/backz.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
