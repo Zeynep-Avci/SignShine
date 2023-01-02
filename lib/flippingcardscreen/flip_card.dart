@@ -14,26 +14,18 @@ import 'package:flutter/widgets.dart';
                       fontSize: 35,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Flip the card back and click on "Next"',
-                    style: TextStyle(
-                      fontFamily: 'KottaRegular',
-                      fontSize: 20,
-                    ),
-                  ),
                   SizedBox(height: 30),
                   FlipCardWidget(
+                    isFront: true,
                     front: Image.asset(
                         'assets/flipping card/front/frontcard.png'),
                     back: Image.asset(lists.flippingcards[0]),
                   ),
                   SizedBox(height: 30,),
                   FloatingActionButton(
-                      backgroundColor: Color(0xFFF1D97A),
-                      onPressed: () {
+                    backgroundColor: Color(0xFFF1D97A),
+                    onPressed: () {
                       setState(() {
-                        Image.asset('assets/flipping card/front/frontcard.png');
                         lists.shuffle();
                       });
                     },
@@ -48,8 +40,10 @@ class FlipCardWidget extends StatefulWidget{
   //get the images
   final Image front;
   final Image back;
+  bool isFront;
 
-  const FlipCardWidget({
+  FlipCardWidget({
+    required this.isFront,
     required this.front,
     required this.back,
     Key? key,
@@ -64,7 +58,6 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
   late AnimationController controller;
   late Animation<double> animation;
 
-  bool isFront = true;
   double dragPosition = 0;
   bool isFrontStart = true;
 
@@ -107,7 +100,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       //to make the dragging easier (if dragged until the very end, the image should not go back to position; the user should not make a "bigger/forced" drag)
       onHorizontalDragStart: (details){
         controller.stop();
-        isFrontStart = isFront;
+        isFrontStart = widget.isFront;
       },
       //set in a setState, so the UI stays updated
       onHorizontalDragUpdate: (details) => setState(() {
@@ -123,11 +116,11 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
         //same as onHorizontalDragStart
         if(velocity >=100){
-          isFront = !isFrontStart;
+          widget.isFront = !isFrontStart;
         }
 
         //if dragged and let go in the middle, go back to original position
-        final double end = isFront ? (dragPosition > 180 ? 360 : 0) : 180;
+        final double end = widget.isFront ? (dragPosition > 180 ? 360 : 0) : 180;
 
         animation = Tween<double>(
           begin: dragPosition,
@@ -140,7 +133,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       child:Transform(
         transform: transform,
         alignment: Alignment.center,
-        child: isFront
+        child: widget.isFront
             ? widget.front
             : Transform(
           transform: Matrix4.identity()..rotateY(pi),
@@ -153,9 +146,9 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
   void setImageSide(){
     if (dragPosition <= 90 || dragPosition >=270){
-      isFront = true;
+      widget.isFront = true;
     } else {
-      isFront = false;
+      widget.isFront = false;
     }
   }
 }
