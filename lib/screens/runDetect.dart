@@ -1,53 +1,51 @@
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
-import 'practice.dart';
+import 'detect.dart';
 
 List<CameraDescription>? cameras;
 
-//Future<void> main() async {
- // WidgetsFlutterBinding.ensureInitialized();
- // cameras = await availableCameras();
- // runApp(MyAppFuture<void>;
+//main() async {
+//WidgetsFlutterBinding.ensureInitialized();
+// cameras = await availableCameras();
+//  runApp(MyApp());
 //}
 
-void main() async  {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
-  runApp(MyApp2());
+  //cameras = await availableCameras();
+  runApp(MyApp());
 }
 
-class MyApp2 extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.indigo[900],
+        primaryColor: Colors.amber[50],
       ),
-      home: FirstScreen(),
+      home: TestScreen(),
     );
   }
 }
 
-class FirstScreen extends StatefulWidget {
+class TestScreen extends StatefulWidget {
   @override
-  _FirstScreenState createState() => _FirstScreenState();
+  _TestScreenState createState() => _TestScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _TestScreenState extends State<TestScreen> {
   loadmodel() async {
     Tflite.loadModel(
-      model: "assets/model/model.tflite",
-      labels: "assets/model/labels2.txt",
+      model: "assets/ml/model_all.tflite",
+      labels: "assets/ml/label.txt",
     );
   }
 
   @override
   void initState() {
     super.initState();
-
     loadmodel();
   }
 
@@ -56,7 +54,7 @@ class _FirstScreenState extends State<FirstScreen> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.indigo[900],
+      backgroundColor: Colors.deepPurpleAccent,
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
@@ -65,7 +63,7 @@ class _FirstScreenState extends State<FirstScreen> {
             height: 50,
             width: w,
             child: MaterialButton(
-              color: Colors.white,
+              color: Colors.amberAccent,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               onPressed: () {
@@ -77,7 +75,8 @@ class _FirstScreenState extends State<FirstScreen> {
                 );
               },
               child: Text(
-                'Start Detecting',
+                'Test it yourself!',
+                style: TextStyle(fontSize: 22),
               ),
             ),
           ),

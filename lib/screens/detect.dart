@@ -1,8 +1,8 @@
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
-import 'home.dart';
+
+import 'runDetect.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,16 +15,15 @@ class _HomeState extends State<Home> {
   CameraImage? cameraImage;
 
 
-//  change the model name in main file at line number 35,36
-  loadmodel() async {
-     Tflite.loadModel(
-      model: "assets/model/model_unquant.tflite",
-       labels: "assets/model/labels.txt",
-     );
-   }
+//  change the model name in main file at line number 35,36 
+//   loadmodel() async {
+//     Tflite.loadModel(
+//       model: "assets/detect.tflite",
+//       labels: "assets/labels.txt",
+//     );
+//   }
 
   initCamera() {
-
     // cameraController = CameraController(cameras![0], ResolutionPreset.medium);
 
     // OR
@@ -37,10 +36,6 @@ class _HomeState extends State<Home> {
         ResolutionPreset.medium);
 
 
-
-
-
-
     cameraController!.initialize().then(
           (value) {
         if (!mounted) {
@@ -49,7 +44,8 @@ class _HomeState extends State<Home> {
         setState(
               () {
             cameraController!.startImageStream(
-                  (image) => {
+                  (image) =>
+              {
                 if (true)
                   {
                     // setState(
@@ -71,7 +67,6 @@ class _HomeState extends State<Home> {
 
   applymodelonimages() async {
     if (cameraImage != null) {
-      await Future.delayed(Duration(milliseconds: 500));
       var predictions = await Tflite.runModelOnFrame(
           bytesList: cameraImage!.planes.map(
                 (plane) {
@@ -108,16 +103,18 @@ class _HomeState extends State<Home> {
     }
   }
 
+
   @override
   void initState() {
     super.initState();
-    loadmodel();
     initCamera();
+    // loadmodel();
   }
 
   @override
   void dispose() async {
     super.dispose();
+
     await Tflite.close();
     cameraController!.dispose();
   }
@@ -125,8 +122,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:
-      ThemeData(brightness: Brightness.dark, primaryColor: Colors.purple),
+      //theme:
+      //ThemeData(brightness: Brightness.dark, primaryColor: Colors.purple),
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(

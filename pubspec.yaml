@@ -104,32 +104,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/homeassets/
-    - assets/alphabet/a.png
-    - assets/alphabet/b.png
-    - assets/alphabet/c.png
-    - assets/alphabet/d.png
-    - assets/alphabet/e.png
-    - assets/alphabet/f.png
-    - assets/alphabet/g.png
-    - assets/alphabet/h.png
-    - assets/alphabet/i.png
-    - assets/alphabet/j.png
-    - assets/alphabet/k.png
-    - assets/alphabet/L.png
-    - assets/alphabet/m.png
-    - assets/alphabet/n.png
-    - assets/alphabet/o.png
-    - assets/alphabet/p.png
-    - assets/alphabet/q.png
-    - assets/alphabet/r.png
-    - assets/alphabet/s.png
-    - assets/alphabet/t.png
-    - assets/alphabet/u.png
-    - assets/alphabet/v.png
-    - assets/alphabet/w.png
-    - assets/alphabet/x.png
-    - assets/alphabet/y.png
-    - assets/alphabet/z.png
+    - assets/alphabet/
     - assets/0.png
     - assets/1.png
     - assets/2.png
@@ -171,8 +146,8 @@ flutter:
     - assets/flipping card/back/backx.png
     - assets/flipping card/back/backy.png
     - assets/flipping card/back/backz.png
-    - assets/model/model_unquant.tflite
-    - assets/model/labels.txt
+    - assets/model/
+    - assets/ml/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
