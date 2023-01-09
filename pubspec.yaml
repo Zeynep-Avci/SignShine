@@ -39,8 +39,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   go_router: ^6.0.0
   provider: ^6.0.5
-  #camera: ^0.10.1
+  camera: ^0.9.4+3
+  percent_indicator: ^2.1.3
+  flutter_tts:
+  sqflite: ^2.2.2
+  image: ^3.1.3
+  image_picker: ^0.8.4+9
+  path_provider: ^2.0.9
   #tflite: ^1.1.2
+  #tflite_flutter_helper: ^0.3.1
+  flutter_tflite: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +60,9 @@ dev_dependencies:
   #for splash screen
   flutter_native_splash: ^2.2.16
   #for changing the display name
+  #tflite_flutter: ^0.9.0
+  #tflite_flutter_helper: ^0.3.1
+
 
 flutter_native_splash:
   #statt color bg ->
@@ -159,6 +171,8 @@ flutter:
     - assets/flipping card/back/backx.png
     - assets/flipping card/back/backy.png
     - assets/flipping card/back/backz.png
+    - assets/model/model_unquant.tflite
+    - assets/model/labels.txt
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

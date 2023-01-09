@@ -1,5 +1,7 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:signshine/screens/remember.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,8 +14,8 @@ class MyApp extends StatelessWidget {
       home: LearningScreen(),
       routes: {
         '/favorites': (context) => FavoriteScreen(
-              favoriteImages: [],
-            ),
+          favoriteImages: [],
+        ),
       },
     );
   }
@@ -47,17 +49,6 @@ class LearningScreen extends StatefulWidget {
     'assets/alphabet/x.png',
     'assets/alphabet/y.png',
     'assets/alphabet/z.png',
-    'assets/0.png',
-    'assets/1.png',
-    'assets/2.png',
-    'assets/3.png',
-    'assets/4.png',
-    'assets/5.png',
-    'assets/6.png',
-    'assets/7.png',
-    'assets/8.png',
-    'assets/9.png',
-    'assets/10.png'
   ];
 
   @override
@@ -80,7 +71,7 @@ class _LearningScreenState extends State<LearningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purpleAccent,
+      backgroundColor: Colors.purple[500],
       appBar: AppBar(
         title: Text('Learning Screen'),
         centerTitle: true,
@@ -93,7 +84,7 @@ class _LearningScreenState extends State<LearningScreen> {
           Text(
             'Learn Sign Language',
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               color: Colors.yellow,
             ),
           ),
@@ -103,16 +94,21 @@ class _LearningScreenState extends State<LearningScreen> {
               itemCount: widget.signImages.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
+                  padding: const EdgeInsets.all(15),
+                  child: Card(
+                    elevation: 20,
+                    shape: Border.all(width:5,),
+                    color: Colors.purple[200],
+                    child: Column(
+                      children:[
+                        SizedBox(height:20,),
                       Image(
                         image: AssetImage(widget.signImages[index]),
-                        width: 300,
-                        height: 300,
+                        width: 248,
+                        height: 248,
                       ),
                       IconButton(
-                          icon: Icon(
+                          icon: Icon(size:30,
                             _favoriteImages.contains(widget.signImages[index])
                                 ? Icons.favorite
                                 : Icons.favorite_border,
@@ -120,7 +116,8 @@ class _LearningScreenState extends State<LearningScreen> {
                           onPressed: () {
                             _toggleFavorite(widget.signImages[index]);
                           }),
-                    ],
+                   ],
+                    ),
                   ),
                 );
               },
@@ -137,4 +134,4 @@ class _LearningScreenState extends State<LearningScreen> {
       ),
     );
   }
-}
+}*/
