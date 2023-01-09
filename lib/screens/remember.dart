@@ -1,60 +1,86 @@
+import 'package:signshine/models/remember_page_models.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-
-class FavoriteScreen extends StatelessWidget {
-  final List<String> favoriteImages;
-
-  FavoriteScreen({required this.favoriteImages});
-
+class RememberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // This gets the current state of FavoritePageModel and also tells Flutter
+    // to rebuild this widget when FavoritePageModel notifies listeners (in other words,
+    // when it changes).
     return Scaffold(
-      backgroundColor: Colors.purpleAccent,
       appBar: AppBar(
-        title: Text('To Remember'),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          'Remember',
+          style: Theme.of(context).textTheme.headline1,
+        ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Favorite Sign Language Images',
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.yellow,
+      body: Container(
+        color: Colors.purple[100],
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                // to call FavoritePageList widget //
+                child: _RememberPageList(),
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: favoriteImages.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Image(
-                        image: AssetImage(favoriteImages[index]),
-                        width: 300,
-                        height: 300,
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.favorite),
-                        onPressed: () async {
-                          // Remove the image from the favoriteImages list
-                          // Remove the image from the database or file
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
+// UI of FavoritePageList //
+class _RememberPageList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var itemNameStyle = Theme
+        .of(context)
+        .textTheme
+        .headline6;
+    // This gets the current state of FavoritePageModel and also tells Flutter
+    // to rebuild this widget when FavoritePageModel notifies listeners (in other words,
+    // when it changes).
+    var favoritepage = context.watch<RememberPageModel>();
+
+
+    return ListView.builder(
+      itemCount: favoritepage.items.length,
+      itemBuilder: (context, index) => Container(
+        child: LimitedBox(
+          maxHeight: 250,
+          child: Row(
+            children: [
+              AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(favoritepage.items[index].image),
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete),
+                // code to remove the favorite list //
+                onPressed: () {
+                  favoritepage.remove(favoritepage.items[index]);
+                },
+              ),
+              //title: Text(
+              // favoritepage.items[index].name,
+              //  style: itemNameStyle,
+              //),
+            ],
+          ),
+        ),
+      ),
+    );
+
+  }
+}
+
+
+
+
+
+
+
