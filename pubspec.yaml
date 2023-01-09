@@ -94,9 +94,9 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: KottaRegular
+    - family: Neatstone
       fonts:
-        - asset: fonts/KottaRegular-DO4aW.ttf
+        - asset: fonts/Neastone-2OV5W.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
