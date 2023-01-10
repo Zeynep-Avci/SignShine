@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:signshine/screens/flippingcardscreen/listshufflerclass.dart';
 
-class FlipScreen extends StatelessWidget {
+class FlipScreen extends StatefulWidget{
+
+  @override
+  _FlipScreen createState() => _FlipScreen();
+}
+
+class _FlipScreen extends State<FlipScreen>{
+
   @override
   Widget build(BuildContext context) =>
       Scaffold(
@@ -16,21 +23,21 @@ class FlipScreen extends StatelessWidget {
           ),
         ),
         body: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(32),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/bg.png'),
-              fit: BoxFit.cover,
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/bg.png'),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
             child: Column(
               children: [
                 Text(
                   'Guess the letter ${lists.flippingcardsletter[0]}',
                   style: TextStyle(
-                    fontFamily: 'KottaRegular',
-                    fontSize: 35,
+                    fontFamily: 'Neatstone',
+                    fontSize: 45,
                   ),
                 ),
                 SizedBox(height: 30),
@@ -43,7 +50,10 @@ class FlipScreen extends StatelessWidget {
                 FloatingActionButton(
                   backgroundColor: Color(0xFFF1D97A),
                   onPressed: () {
+                    setState(() {
+                      _FlipCardWidgetState.isFront= true;
                       lists.shuffle();
+                    });
                   },
                   child: Text('Next', style: TextStyle(color: Colors.deepPurple)),
                 )
@@ -57,6 +67,7 @@ class FlipCardWidget extends StatefulWidget{
   //get the images
   final Image front;
   final Image back;
+
 
   FlipCardWidget({
     required this.front,
@@ -75,7 +86,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
   double dragPosition = 0;
   bool isFrontStart = true;
-  bool isFront = true;
+  static bool isFront = true;
 
   //for Animation
   @override

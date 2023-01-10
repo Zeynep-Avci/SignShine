@@ -5,7 +5,7 @@ class CustomListTile extends StatelessWidget{
 
   IconData icon;
   String text;
-  Function onTap;
+  Function()? onTap;
 
   CustomListTile(this.icon, this.text, this.onTap);
 
@@ -20,7 +20,7 @@ class CustomListTile extends StatelessWidget{
         ),
         child: InkWell(
           splashColor: Colors.purpleAccent,
-          onTap: ()=>{},
+          onTap: onTap,
           child: Container(
             height: 50,
             child: Row(

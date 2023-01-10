@@ -15,10 +15,19 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            CustomListTile(Icons.home_filled, 'Home', ()=>{}),
-            CustomListTile(Icons.my_library_books_sharp, 'Learn', ()=>{}),
-            CustomListTile(Icons.person, 'Practice', ()=>{}),
-            CustomListTile(Icons.camera_alt, 'Test', ()=>{}),
+            CustomListTile(Icons.home_filled, 'Home', ()=>{
+            Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+            )}),
+            CustomListTile(Icons.my_library_books_sharp, 'Learn', ()=>{Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => MyAppLearn()),
+            )}),
+            CustomListTile(Icons.person, 'Practice', ()=>{Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => FlipScreen()),
+            )}),
+            CustomListTile(Icons.camera_alt, 'Test', ()=>{Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => DetectScreen()),
+            )}),
           ],
         ),
       ),
@@ -26,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: Color(0xFFFFF8FA),
+              color: Color(0xFFFFEFF1),
             ),
           ),
           Container(
@@ -73,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                           assetsrc: 'assets/homeassets/fist-bump-gesture.png',
                           press: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                              MaterialPageRoute(builder: (context) => MyAppLearn()),
                             );
                           },
                         ),
@@ -100,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                           assetsrc: 'assets/homeassets/holding-smartphone.png',
                           press: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                              MaterialPageRoute(builder: (context) => DetectScreen()),
                             );
                           },
                         ),
@@ -140,7 +149,7 @@ class CategoryCard extends StatelessWidget {
               offset: Offset(0, 17),
               blurRadius: 17,
               spreadRadius: -23,
-              color: Color(0xFFE6E6E6),
+              color: Colors.black,
             ),
           ],
         ),

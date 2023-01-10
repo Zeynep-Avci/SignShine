@@ -3,6 +3,7 @@ import 'package:signshine/models/remember_page_models.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:signshine/common/theme.dart';
+import 'package:signshine/screens/homescreen.dart';
 import 'package:signshine/screens/remember.dart';
 
 
@@ -11,6 +12,7 @@ void main() {
 }
 
 class MyAppLearn extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     // Using MultiProvider is convenient when providing multiple objects.
@@ -48,14 +50,32 @@ class MyAppLearn extends StatelessWidget {
 
 class LearningPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
+  Widget build(BuildContext context) =>
+      Scaffold(
+        body:
+        Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: CustomScrollView(
+              slivers: [
           SliverAppBar(
-            title:
-                Text('Learn', style: Theme.of(context).textTheme.headline1),
-            floating: true,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+            backgroundColor: const Color(0xFF7C4492),
+            centerTitle: true,
+            title: Container(
+              height: 30,
+              child: Image.asset('assets/fontlogo.png'),
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.favorite_border),
@@ -64,20 +84,20 @@ class LearningPage extends StatelessWidget {
               ),
             ],
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 12)),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              // to call MyListItem widget //
-              return _MyListItem(index);
-            },
-                    // to specify count the list show //
-    childCount: 26),
+            const SliverToBoxAdapter(child: SizedBox(height: 12)),
+            SliverList(
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                    // to call MyListItem widget //
+                    return _MyListItem(index);
+                  },
+                      // to specify count the list show //
+                      childCount: 26),
+                ),
+              ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      );
 }
 
 // UI of MyListItem widget //
@@ -103,7 +123,7 @@ class _MyListItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1,
-              child: Image.asset(item.image),
+              child: Image.asset(item.image, scale: 0.8),
             ),
             const SizedBox(width: 5),
             // to call AddButton widget //
@@ -136,8 +156,8 @@ class _AddButton extends StatelessWidget {
 
     return IconButton(
       icon: isInFavoritePage
-          ? Icon(Icons.favorite, color: Colors.black)
-          : Icon(Icons.favorite_border),
+          ? Icon(Icons.favorite, color: Color(0xFF7C4492))
+          : Icon(Icons.favorite_border, color: Color(0xFF7C4492)),
       onPressed: isInFavoritePage
           ? () {
               // To make the user removes the favorite item not only from the favorite page but also from the favorite list
