@@ -14,10 +14,10 @@ List<CameraDescription>? cameras;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //cameras = await availableCameras();
-  runApp(MyApp());
+  runApp(DetectScreen());
 }
 
-class MyApp extends StatelessWidget {
+class DetectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,7 +70,7 @@ class _TestScreenState extends State<TestScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Home(),
+                    builder: (context) => Detect(),
                   ),
                 );
               },

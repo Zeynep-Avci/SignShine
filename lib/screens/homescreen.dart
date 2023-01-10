@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:signshine/navigationwidget.dart';
 import 'package:signshine/screens/flippingcardscreen/flip_card.dart';
-import 'package:signshine/screens/runDetect.dart';
+import 'package:signshine/screens/testscreen.dart';
 
 import 'learning.dart';
 

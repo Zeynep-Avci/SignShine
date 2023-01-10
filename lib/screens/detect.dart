@@ -2,14 +2,14 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 
-import 'runDetect.dart';
+import 'testscreen.dart';
 
-class Home extends StatefulWidget {
+class Detect extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _DetectState createState() => _DetectState();
 }
 
-class _HomeState extends State<Home> {
+class _DetectState extends State<Detect> {
   String answer = "";
   CameraController? cameraController;
   CameraImage? cameraImage;
