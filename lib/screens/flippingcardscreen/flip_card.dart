@@ -1,49 +1,64 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:signshine/screens/flippingcardscreen/listshufflerclass.dart';
 
-//comes inside scaffold under BoxDecoration
-/*
-
-              child: Column(
-                children: [
-                  Text(
-                    'Guess the letter ${lists.flippingcardsletter[0]}',
-                    style: TextStyle(
-                      fontFamily: 'KottaRegular',
-                      fontSize: 35,
-                    ),
+class FlipScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) =>
+      Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF7C4492),
+          centerTitle: true,
+          title: Container(
+            height: 30,
+            child: Image.asset('assets/fontlogo.png'),
+          ),
+        ),
+        body: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+            child: Column(
+              children: [
+                Text(
+                  'Guess the letter ${lists.flippingcardsletter[0]}',
+                  style: TextStyle(
+                    fontFamily: 'KottaRegular',
+                    fontSize: 35,
                   ),
-                  SizedBox(height: 30),
-                  FlipCardWidget(
-                    isFront: true,
-                    front: Image.asset(
-                        'assets/flipping card/front/frontcard.png'),
-                    back: Image.asset(lists.flippingcards[0]),
-                  ),
-                  SizedBox(height: 30,),
-                  FloatingActionButton(
-                    backgroundColor: Color(0xFFF1D97A),
-                    onPressed: () {
-                      setState(() {
-                        lists.shuffle();
-                      });
-                    },
-                    child: Text('Next', style: TextStyle(color: Colors.deepPurple)),
-                  )
-                ],
-              )
-
- */
+                ),
+                SizedBox(height: 30),
+                FlipCardWidget(
+                  front: Image.asset(
+                      'assets/flipping card/front/frontcard.png'),
+                  back: Image.asset(lists.flippingcards[0]),
+                ),
+                SizedBox(height: 30,),
+                FloatingActionButton(
+                  backgroundColor: Color(0xFFF1D97A),
+                  onPressed: () {
+                      lists.shuffle();
+                  },
+                  child: Text('Next', style: TextStyle(color: Colors.deepPurple)),
+                )
+              ],
+            )
+        ),
+      );
+}
 
 class FlipCardWidget extends StatefulWidget{
   //get the images
   final Image front;
   final Image back;
-  bool isFront;
 
   FlipCardWidget({
-    required this.isFront,
     required this.front,
     required this.back,
     Key? key,
@@ -60,6 +75,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
   double dragPosition = 0;
   bool isFrontStart = true;
+  bool isFront = true;
 
   //for Animation
   @override
@@ -100,7 +116,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       //to make the dragging easier (if dragged until the very end, the image should not go back to position; the user should not make a "bigger/forced" drag)
       onHorizontalDragStart: (details){
         controller.stop();
-        isFrontStart = widget.isFront;
+        isFrontStart = isFront;
       },
       //set in a setState, so the UI stays updated
       onHorizontalDragUpdate: (details) => setState(() {
@@ -116,11 +132,11 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
         //same as onHorizontalDragStart
         if(velocity >=100){
-          widget.isFront = !isFrontStart;
+          isFront = !isFrontStart;
         }
 
         //if dragged and let go in the middle, go back to original position
-        final double end = widget.isFront ? (dragPosition > 180 ? 360 : 0) : 180;
+        final double end = isFront ? (dragPosition > 180 ? 360 : 0) : 180;
 
         animation = Tween<double>(
           begin: dragPosition,
@@ -133,7 +149,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
       child:Transform(
         transform: transform,
         alignment: Alignment.center,
-        child: widget.isFront
+        child: isFront
             ? widget.front
             : Transform(
           transform: Matrix4.identity()..rotateY(pi),
@@ -146,9 +162,9 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
 
   void setImageSide(){
     if (dragPosition <= 90 || dragPosition >=270){
-      widget.isFront = true;
+      isFront = true;
     } else {
-      widget.isFront = false;
+      isFront = false;
     }
   }
 }

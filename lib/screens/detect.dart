@@ -29,9 +29,9 @@ class _HomeState extends State<Home> {
     // OR
     cameraController = CameraController(
         CameraDescription(
-          name: '0', // 0 for back camera and 1 for front camera
-          lensDirection: CameraLensDirection.back,
-          sensorOrientation: 0,
+          name: '1', // 0 for back camera and 1 for front camera
+          lensDirection: CameraLensDirection.front,
+          sensorOrientation: 1,
         ),
         ResolutionPreset.medium);
 
@@ -94,7 +94,6 @@ class _HomeState extends State<Home> {
                   '\n';
         },
       );
-
       setState(
             () {
           answer = answer;

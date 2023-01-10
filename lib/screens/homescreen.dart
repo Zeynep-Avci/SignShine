@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:signshine/navigationwidget.dart';
+import 'package:signshine/screens/flippingcardscreen/flip_card.dart';
+import 'package:signshine/screens/runDetect.dart';
+
+import 'learning.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -67,18 +71,38 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           categorytitel: "Learn the ASL",
                           assetsrc: 'assets/homeassets/fist-bump-gesture.png',
+                          press: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                            );
+                          },
                         ),
                         CategoryCard(
                           categorytitel: "Favourites",
                           assetsrc: 'assets/homeassets/feelings.png',
+                          press: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                            );
+                          },
                         ),
                         CategoryCard(
                           categorytitel: "Practice",
                           assetsrc: 'assets/homeassets/first-place-medal.png',
+                          press: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                            );
+                          },
                         ),
                         CategoryCard(
                           categorytitel: "Test yourself",
                           assetsrc: 'assets/homeassets/holding-smartphone.png',
+                          press: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => FlipScreen()),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -97,8 +121,9 @@ class HomeScreen extends StatelessWidget {
 class CategoryCard extends StatelessWidget {
   final String categorytitel;
   final String assetsrc;
+  final Function()? press;
   const CategoryCard({
-    Key? key, required this.categorytitel, required this.assetsrc,
+    Key? key, required this.categorytitel, required this.assetsrc, required this.press,
   }) : super(key: key);
 
   @override
@@ -112,17 +137,17 @@ class CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
-              offset: Offset(30,50),
-              blurRadius: 7,
-              spreadRadius: 2,
-              color: Colors.grey,
+              offset: Offset(0, 17),
+              blurRadius: 17,
+              spreadRadius: -23,
+              color: Color(0xFFE6E6E6),
             ),
           ],
         ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: press,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
