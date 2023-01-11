@@ -58,9 +58,9 @@ class _RememberPageList extends StatelessWidget {
     return ListView.builder(
       itemCount: favoritepage.items.length,
       itemBuilder: (context, index) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         child: LimitedBox(
-          maxHeight: 295,
+          maxHeight: 285,
           child: Row(
             children: [
               AspectRatio(

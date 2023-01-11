@@ -38,8 +38,8 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   loadmodel() async {
     Tflite.loadModel(
-      model: "assets/ml/model_all.tflite",
-      labels: "assets/ml/label.txt",
+      model: "assets/ml/model.tflite",
+      labels: "assets/ml/labels.txt",
     );
   }
 
@@ -54,16 +54,31 @@ class _TestScreenState extends State<TestScreen> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF7C4492),
+        centerTitle: true,
+        title: Container(
+          height: 30,
+          child: Image.asset('assets/fontlogo.png'),
+        ),
+      ),
       body: Center(
         child: Container(
-          color: Theme.of(context).primaryColor,
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          //color: Theme.of(context).primaryColor,
           child: Container(
             margin: EdgeInsets.all(20),
             height: 50,
             width: w,
             child: MaterialButton(
-              color: Colors.amberAccent,
+              color: const Color(0xFFF1D97A),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               onPressed: () {
@@ -74,14 +89,21 @@ class _TestScreenState extends State<TestScreen> {
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Test it yourself!',
-                style: TextStyle(fontSize: 22),
+                style: TextStyle( fontFamily: 'Neatstone',
+                        fontSize: 30,
+                        color: Colors.black54,
+                    /*TextStyle(
+                   /   color: Colors.black54,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20,)*/
               ),
             ),
           ),
         ),
       ),
+    ),
     );
   }
 }

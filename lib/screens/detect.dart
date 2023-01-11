@@ -128,21 +128,27 @@ class _DetectState extends State<Detect> {
         child: Scaffold(
           body: cameraImage != null
               ? Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.blue,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            color: const Color(0xFFF1D97A),
             child: Stack(
               children: [
                 Positioned(
                   child: Center(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      child: AspectRatio(
-                        aspectRatio: cameraController!.value.aspectRatio,
-                        child: CameraPreview(
-                          cameraController!,
-                        ),
+                    child: SizedBox(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      height: 500,
+                      child: CameraPreview(
+                        cameraController!,
                       ),
                     ),
                   ),
@@ -154,13 +160,13 @@ class _DetectState extends State<Detect> {
                   child: Center(
                     child: Container(
                       padding: EdgeInsets.all(10),
-                      color: Colors.black87,
+                      color: const Color(0xFF7C4492),
                       child: Center(
                         child: Text(
                           answer,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20, color: Colors.white),
+                              fontSize: 25, color: Colors.white),
                         ),
                       ),
                     ),

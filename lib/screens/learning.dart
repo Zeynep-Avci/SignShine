@@ -116,9 +116,9 @@ class _MyListItem extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme.headline6;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       child: LimitedBox(
-        maxHeight: 295,
+        maxHeight: 285,
         child: Row(
           children: [
             AspectRatio(
