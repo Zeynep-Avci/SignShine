@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'detect.dart';
+import 'homescreen.dart';
 
 List<CameraDescription>? cameras;
 
@@ -11,9 +12,9 @@ List<CameraDescription>? cameras;
 //  runApp(MyApp());
 //}
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //cameras = await availableCameras();
+  cameras = await availableCameras();
   runApp(DetectScreen());
 }
 
@@ -38,8 +39,8 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   loadmodel() async {
     Tflite.loadModel(
-      model: "assets/ml/model.tflite",
-      labels: "assets/ml/labels.txt",
+      model: "assets/ml/model_all.tflite",
+      labels: "assets/ml/label.txt",
     );
   }
 
@@ -56,6 +57,12 @@ class _TestScreenState extends State<TestScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF7C4492),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+          },
+        ),
         centerTitle: true,
         title: Container(
           height: 30,

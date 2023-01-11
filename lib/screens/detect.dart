@@ -78,7 +78,7 @@ class _DetectState extends State<Detect> {
           imageMean: 127.5,
           imageStd: 127.5,
           rotation: 90,
-          numResults: 3,
+          numResults: 26,
           threshold: 0.1,
           asynch: true);
 
@@ -90,7 +90,7 @@ class _DetectState extends State<Detect> {
               prediction['label'].toString().substring(0, 1).toUpperCase() +
                   prediction['label'].toString().substring(1) +
                   " " +
-                  (prediction['confidence'] as double).toStringAsFixed(3) +
+                  (prediction['confidence'] *100).toStringAsFixed(2)+
                   '\n';
         },
       );
