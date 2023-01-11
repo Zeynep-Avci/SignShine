@@ -29,9 +29,9 @@ class _DetectState extends State<Detect> {
     // OR
     cameraController = CameraController(
         CameraDescription(
-          name: '1', // 0 for back camera and 1 for front camera
-          lensDirection: CameraLensDirection.front,
-          sensorOrientation: 1,
+          name: '0', // 0 for back camera and 1 for front camera
+          lensDirection: CameraLensDirection.back,
+          sensorOrientation: 0,
         ),
         ResolutionPreset.medium);
 
